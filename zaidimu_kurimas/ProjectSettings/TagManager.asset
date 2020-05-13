@@ -60,3 +60,6 @@ TagManager:
   - name: GameCharacters
     uniqueID: 268219153
     locked: 0
+  - name: Banner
+    uniqueID: 570343099
+    locked: 0

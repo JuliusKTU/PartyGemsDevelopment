@@ -12,6 +12,8 @@ public class BombControl : MonoBehaviour
     public ThirdPlayerMovement thirdPlayer;
     public FourthPlayerMovement fourthPlayer;
 
+    public GameObject endGame;
+
     public float coolDown = 0.5f;
     private float coolDownTimer = 0.5f;
 
@@ -19,7 +21,7 @@ public class BombControl : MonoBehaviour
     float BombExplodes;
     public Shake chameraShake;
     public Text BombTimerText;
-
+    private int TotalPlayers = 4; 
     public int playersCount = 4;
     
     // Start is called before the first frame update
@@ -27,6 +29,7 @@ public class BombControl : MonoBehaviour
     {
         BombExplodes = BombExplodesAfter;
         playersCount = AddPlayer.howManyPlayers;
+        TotalPlayers = AddPlayer.howManyPlayers;
         SelectPlayers(playersCount);
         BombTimerText.text = "Hurry up! Potion will explode at any time!";
         
@@ -54,6 +57,10 @@ public class BombControl : MonoBehaviour
             secondPlayer.hasBomb = false;
             thirdPlayer.hasBomb = false;
             fourthPlayer.hasBomb = false;
+
+            endGame.GetComponentInChildren<gamemanager>().SetResults(TotalPlayers, WhichHasWonInt());
+            endGame.SetActive(true);
+
         }
         else
         {
@@ -62,11 +69,7 @@ public class BombControl : MonoBehaviour
                 BombTimerText.text = Convert.ToString(Math.Round(BombExplodes));
             }
 
-        }
-        
-        //Debug.Log(coolDownTimer);
-
-        if (BombExplodes<0){
+            if (BombExplodes<0){
 
             StartCoroutine(chameraShake.CameraShake(.25f, .55f));
 
@@ -118,6 +121,12 @@ public class BombControl : MonoBehaviour
             BombTimerText.text = "Hurry up! Potion will explode at any time!";
             BombExplodes = BombExplodesAfter;
         }
+
+        }
+        
+        //Debug.Log(coolDownTimer);
+
+        
 
     }
 
@@ -309,6 +318,30 @@ public class BombControl : MonoBehaviour
         else
         {
             return "NO ONE HAS WON";
+        }
+    }
+
+    private int WhichHasWonInt()
+    {
+        if(firstPlayer.shoudbedestoryed == false)
+        {
+            return 1;
+        }
+        else if (secondPlayer.shoudbedestoryed == false)
+        {
+            return 2;
+        }
+        else if (thirdPlayer.shoudbedestoryed == false)
+        {
+            return 3;
+        }
+        else if (fourthPlayer.shoudbedestoryed == false)
+        {
+            return 4;
+        }
+        else
+        {
+            return 0;
         }
     }
 
