@@ -32,6 +32,14 @@ public class hearts : MonoBehaviour
             {
                 transform.position = new Vector2(8, -3.6f);
             }
+            if (gameObject.tag == "Player3")
+            {
+                transform.position = new Vector2(-7.2f, -3.6f);
+            }
+            if (gameObject.tag == "Player4")
+            {
+                transform.position = new Vector2(7.2f, -3.6f);
+            }
             count++;
             heart[count].enabled = false;
             if (count == 2)

@@ -14,6 +14,12 @@ TagManager:
   - AddFourth
   - DeleteThird
   - DeleteFourth
+  - obstacle
+  - finish3
+  - finish2
+  - finish1
+  - finish4
+  - apple
   layers:
   - Default
   - TransparentFX
@@ -23,7 +29,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ground
   - 
   - 
   - 
